@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const itinerarySchema = new Schema({
+const ItinerarySchema = new Schema({
     creator: {
         type: String,
         required: true,
@@ -9,7 +9,7 @@ const itinerarySchema = new Schema({
         type: String,
         required: true,
     },
-    Price: {
+    price: {
         type: Number,
         required: true,
     },
@@ -25,7 +25,10 @@ const itinerarySchema = new Schema({
         }
     ],
 
-    purchasers: [id],
+    purchaser_ids:[],
 });
 
-module.exports = itinerarySchema;
+const Itinerary = model('Itinerary', ItinerarySchema);
+
+
+module.exports = Itinerary;
