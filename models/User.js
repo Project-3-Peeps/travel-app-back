@@ -23,7 +23,8 @@ const UserSchema = new Schema(
     },
     points: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
     saved_itinerary: {type: Array, "default": [{ItinerarySchema}]},
@@ -56,6 +57,12 @@ UserSchema.methods.isCorrectPassword = async function (password) {
 UserSchema.virtual('ItineraryCount').get(function () {
   return this.savedItinerary.length;
 });
+// when we query a user, we'll also get another field called `itineraryCount` with the number of saved books we have
+// TODO: this function is causing the code to break.
+// UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'length' of undefined
+// UserSchema.virtual('ItineraryCount').get(function () {
+//   return this.savedItinerary.length;
+// });
 
 const User = model('User', UserSchema);
 
