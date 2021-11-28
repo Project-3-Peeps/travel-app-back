@@ -8,5 +8,8 @@ router.use('/api', apiRoutes);
 // router.use((req, res) => {
 //   res.sendFile(path.join(__dirname, '../../client/build/index.html'));
 // });
+router.get('/testConnection', (req, res) => {
+    res.json({ message: "success" })
+})
 
 module.exports = router;
