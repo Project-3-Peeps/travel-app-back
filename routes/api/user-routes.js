@@ -89,30 +89,31 @@ router.get('/savedItinerary', authMiddleware, async ({ user }, res) => {
 router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => {
   // router put purchase logic
   try {
-
     const userClient = await User.findOne({ _id: user._id })
-    const purchasingItinerary = await Itinerary.findOne({ _id: body._id })
+    const purchasedItinerary = await Itinerary.findOne({ _id: body._id })
 
     if (!userClient) {
       return res.status(400).json({ message: "User not found" })
     }
-    if (!purchasingItinerary) {
+    if (!purchasedItinerary) {
       return res.status(400).json({ message: "Itinerary not found" })
     }
 
-    let finalPoints = userClient.points - purchasingItinerary.price
+    let finalPoints = userClient.points - purchasedItinerary.price
     if (finalPoints >= 0) {
       // substract point from user
       // add itinerary to user saved_itinerary
       await User.findOneAndUpdate(
         { _id: user._id },
-        { $set: { points: finalPoints }, $addToSet: { saved_itinerary: purchasingItinerary } }
+        { $set: { points: finalPoints }, $addToSet: { saved_itinerary: purchasedItinerary } }
       );
       // add user _id to itinerary purchaser_ids
       await Itinerary.findOneAndUpdate(
         { _id: body._id },
         { $addToSet: { purchaser_ids: user._id } }
       )
+    } else {
+      return res.json({ message: "not enough points" })
     }
     res.json({ message: "successful transaction" })
   } catch (err) {
@@ -122,11 +123,13 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
 
 })
 
-// router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
-//   try {
-//     const user = await User.findOne({ _id: user._id })
-//   }
-// })
+router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
+  try {
+    const userUpdated = await User.findOneAndUpdate(
+      { _id: user._id },
+      // {$add: { points: { 5 } }})
+  }
+})
 
 
 
