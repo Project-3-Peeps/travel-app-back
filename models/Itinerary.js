@@ -30,5 +30,4 @@ const ItinerarySchema = new Schema({
 
 const Itinerary = model('Itinerary', ItinerarySchema);
 
-
 module.exports = Itinerary;
