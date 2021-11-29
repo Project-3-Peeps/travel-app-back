@@ -26,6 +26,8 @@ const UserSchema = new Schema(
         default: 0
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
+    // TODO: check if the correct form is (same for purchased_itinerary)
+    // saved_itinerary: [ItinerarySchema],
     saved_itinerary: {type: Array, "default": [{ItinerarySchema}]},
     purchased_itinerary: {type: Array, "default": [{ItinerarySchema}]},
   },
