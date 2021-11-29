@@ -17,6 +17,14 @@ router.get('/testConnection', (req, res) => {
   res.json({ message: "success" })
 })
 
+router.get('/', (req, res) => {
+  User.findAll({})
+  .then(dbUser => {
+    res.json(dbUser)
+  })
+  .catch(err)
+})
+
 // put authMiddleware anywhere we need to send a token for verification of user
 router.post('/signup', ({ body }, res) => {
   try {
