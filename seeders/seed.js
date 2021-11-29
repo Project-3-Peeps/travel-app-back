@@ -15,6 +15,7 @@ const userSeed = [
         points: 500,
         saved_itinerary: [{
             creator: "Kyle Bove",
+            title: "Pig Beach Day",
             description: "A trip to pig beach",
             price: 30,
             days: [
@@ -31,6 +32,7 @@ const userSeed = [
           },
           {
             creator: "Kyle Bove",
+            title: "Fall in Scandinavia",
             description: "Experience Denmark and Germany the way you're supposed to",
             price: 70,
             days: [
@@ -64,6 +66,7 @@ const userSeed = [
         points: 500,
         saved_itinerary: [{
             creator: "Sami Byers",
+            title: "The Lone Star Experience",
             description: "Going to a good old fashion texas rodeo",
             price: 40,
             days: [
@@ -80,6 +83,7 @@ const userSeed = [
           },
           {
             creator: "Sami Byers",
+            title: "Ireland IRL",
             description: "Pub crawl through Ireland",
             price: 90,
             days: [
@@ -112,6 +116,7 @@ const userSeed = [
         points: 500,
         saved_itinerary: [{
             creator: "JuanJo Ramirez",
+            title: "Seafood in Seatown",
             description: "A quest to find the best seafood in Seattle",
             price: 20,
             days: [
@@ -128,6 +133,7 @@ const userSeed = [
           },
           {
             creator: "JuanJo Ramirez",
+            title: "East Asian Excursion",
             description: "East Asia in two days",
             price: 80,
             days: [
@@ -160,6 +166,7 @@ const userSeed = [
         points: 500,
         saved_itinerary: [  {
             creator: "Chloe Harris",
+            title: "New York in Style",
             description: "Travel New York in fashion",
             price: 50,
             days: [
@@ -176,6 +183,7 @@ const userSeed = [
           },
           {
             creator: "Chloe Harris",
+            title: "Two Days in Japan",
             description: "Blinding lights and city nights in Japan",
             price: 100,
             days: [
@@ -207,6 +215,7 @@ const userSeed = [
 const itinerarySeed = [
   {
     creator: "Kyle Bove",
+    title: "Pig Beach Day",
     description: "A trip to pig beach",
     price: 30,
     days: [
@@ -223,6 +232,7 @@ const itinerarySeed = [
   },
   {
     creator: "JuanJo Ramirez",
+    title: "Seafood in Seatown",
     description: "A quest to find the best seafood in Seattle",
     price: 20,
     days: [
@@ -239,6 +249,7 @@ const itinerarySeed = [
   },
   {
     creator: "Sami Byers",
+    title: "The Lone Star Experience",
     description: "Going to a good old fashion texas rodeo",
     price: 40,
     days: [
@@ -255,6 +266,7 @@ const itinerarySeed = [
   },
   {
     creator: "Chloe Harris",
+    title: "New York in Style",
     description: "Travel New York in fashion",
     price: 50,
     days: [
@@ -271,6 +283,7 @@ const itinerarySeed = [
   },
   {
     creator: "Kyle Bove",
+    title: "Fall in Scandinavia",
     description: "Experience Denmark and Germany the way you're supposed to",
     price: 70,
     days: [
@@ -296,6 +309,7 @@ const itinerarySeed = [
   },
   {
     creator: "JuanJo Ramirez",
+    title: "East Asian Excursion",
     description: "East Asia in two days",
     price: 80,
     days: [
@@ -321,6 +335,7 @@ const itinerarySeed = [
   },
   {
     creator: "Sami Byers",
+    title: "Ireland IRL",
     description: "Pub crawl through Ireland",
     price: 90,
     days: [
@@ -346,6 +361,7 @@ const itinerarySeed = [
   },
   {
     creator: "Chloe Harris",
+    title: "Two Days in Japan",
     description: "Blinding lights and city nights in Japan",
     price: 100,
     days: [
