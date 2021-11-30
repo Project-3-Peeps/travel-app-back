@@ -135,7 +135,9 @@ router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
   try {
     const userUpdated = await User.findOneAndUpdate(
       { _id: user._id },
-      {$add: { points: { 5 } }})
+      {$add: { points:  5  }})
+  } catch(err){
+    return res.status(400).json(err);
   }
 })
 
