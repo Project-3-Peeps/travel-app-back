@@ -29,6 +29,7 @@ const userSeed = [
                 city: 'pig beach'
               },
             ],
+            ratings: []
           },
           {
             creator: "Kyle Bove",
@@ -55,6 +56,7 @@ const userSeed = [
                 city: 'Munich, GER'
               },
             ],
+            ratings: []
           }
         ],
         purchased_itinerary: [],
@@ -80,6 +82,7 @@ const userSeed = [
                 city: 'Fort Worth, TX'
               },
             ],
+            ratings: []
           },
           {
             creator: "Sami Byers",
@@ -106,6 +109,7 @@ const userSeed = [
                 city: 'Antrim, IRE'
               },
             ],
+            ratings: []
           }
         ],
         purchased_itinerary: [],
@@ -130,6 +134,7 @@ const userSeed = [
                 city: 'Seattle, WA'
               },
             ],
+            ratings: []
           },
           {
             creator: "JuanJo Ramirez",
@@ -156,6 +161,7 @@ const userSeed = [
                 city: 'Hong Kong, HK'
               },
             ],
+            ratings: []
           }
         ],
         purchased_itinerary: [],
@@ -180,6 +186,7 @@ const userSeed = [
                 city: 'New York City, NY'
               },
             ],
+            ratings: []
           },
           {
             creator: "Chloe Harris",
@@ -206,6 +213,7 @@ const userSeed = [
                 city: 'Sapporo, JPN'
               },
             ],
+            ratings: []
           }
         ],
         purchased_itinerary: [],
@@ -229,6 +237,7 @@ const itinerarySeed = [
         city: 'pig beach'
       },
     ],
+    ratings: []
   },
   {
     creator: "JuanJo Ramirez",
@@ -246,6 +255,7 @@ const itinerarySeed = [
         city: 'Seattle, WA'
       },
     ],
+    ratings: []
   },
   {
     creator: "Sami Byers",
@@ -263,6 +273,7 @@ const itinerarySeed = [
         city: 'Fort Worth, TX'
       },
     ],
+    ratings: []
   },
   {
     creator: "Chloe Harris",
@@ -280,6 +291,7 @@ const itinerarySeed = [
         city: 'New York City, NY'
       },
     ],
+    ratings: []
   },
   {
     creator: "Kyle Bove",
@@ -306,6 +318,7 @@ const itinerarySeed = [
         city: 'Munich, GER'
       },
     ],
+    ratings: []
   },
   {
     creator: "JuanJo Ramirez",
@@ -332,6 +345,7 @@ const itinerarySeed = [
         city: 'Hong Kong, HK'
       },
     ],
+    ratings: []
   },
   {
     creator: "Sami Byers",
@@ -358,6 +372,7 @@ const itinerarySeed = [
         city: 'Antrim, IRE'
       },
     ],
+    ratings: []
   },
   {
     creator: "Chloe Harris",
@@ -384,6 +399,7 @@ const itinerarySeed = [
         city: 'Sapporo, JPN'
       },
     ],
+    ratings: []
   },
 ];
 

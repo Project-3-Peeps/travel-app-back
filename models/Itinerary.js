@@ -1,6 +1,8 @@
 const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose')
 
-const ItinerarySchema = new Schema({
+const ItinerarySchema = new Schema(
+    {
     creator: {
         type: String,
         required: true,
@@ -28,9 +30,11 @@ const ItinerarySchema = new Schema({
             city: String
         }
     ],
-
-    purchaser_ids:[],
+    ratings: {
+        type: Array, "default": []
+    },
 });
+
 
 const Itinerary = model('Itinerary', ItinerarySchema);
 
