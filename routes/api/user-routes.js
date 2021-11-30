@@ -19,10 +19,10 @@ router.get('/testConnection', (req, res) => {
 
 router.get('/', (req, res) => {
   User.findAll({})
-  .then(dbUser => {
-    res.json(dbUser)
-  })
-  .catch(err)
+    .then(dbUser => {
+      res.json(dbUser)
+    })
+    .catch(err)
 })
 
 // put authMiddleware anywhere we need to send a token for verification of user
@@ -129,6 +129,23 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
     return res.status(400).json(err);
   }
 
+})
+
+router.put('/rateItinerary', authMiddleware, async ({ body, rating }, res) => {
+  try {
+    const ratingItinerary = await Itinerary.findOne({ _id: body._id })
+    if (!ratingItinerary) {
+      return res.status(400).json({ message: "Itinerary not found" })
+    }
+    await Itinerary.findOneAndUpdate(
+      { _id: body._id },
+      { $addToSet: { ratings: rating } }
+    )
+    res.json({ message: "Input submitted" })
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json(err)
+  }
 })
 
 // router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
