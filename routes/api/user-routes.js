@@ -131,17 +131,19 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
 
 })
 
-router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
-  try {
-    const userUpdated = await User.findOneAndUpdate(
-      { _id: user._id },
-      {$add: { points:  5  }})
-  } catch(err){
-    return res.status(400).json(err);
-  }
-})
-
-
+// router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
+//   try {
+//     const userUpdated = await User.findOneAndUpdate(
+//       { _id: user._id },
+//       {$add: { points:  5  }})
+//     if(!userUpdated){
+//       return res.status(400).json({ message: "Something went wrong" })
+//     }
+//     res.json({message: "successfuly added points"})
+//   } catch(err){
+//     return res.status(400).json(err);
+//   }
+// })
 
 // router.route('/signup').post(createUser)
 //.put(authMiddleware, saveItinerary);
