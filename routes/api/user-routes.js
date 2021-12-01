@@ -1,14 +1,7 @@
-require('dotenv').config();
 const router = require('express').Router();
 const { User, Itinerary } = require('../../models')
-const {
-  createUser,
-  getSingleUser,
-  saveItinerary,
-  deleteItinerary,
-  login,
-} = require('../../controllers/user-controller');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 // import middleware
 const { authMiddleware, signToken } = require('../../utils/auth');
@@ -18,11 +11,26 @@ router.get('/testConnection', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-  User.findAll({})
-    .then(dbUser => {
-      res.json(dbUser)
-    })
-    .catch(err)
+  try {
+
+    User.findAll({})
+      .then(dbUser => {
+        res.json(dbUser)
+      })
+  } catch (err) {
+    res.status(400).json(err)
+  }
+})
+
+router.get('/itinerary', (req, res) => {
+  try {
+    Itinerary.findAll({})
+      .then(itineraries => {
+        res.json(itineraries)
+      })
+  } catch (err) {
+    res.status(400).json(err)
+  }
 })
 
 // put authMiddleware anywhere we need to send a token for verification of user
@@ -131,7 +139,7 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
 
 })
 
-router.put('/rateItinerary', authMiddleware, async ({ body, rating }, res) => {
+router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
   try {
     const ratingItinerary = await Itinerary.findOne({ _id: body._id })
     if (!ratingItinerary) {
@@ -139,7 +147,7 @@ router.put('/rateItinerary', authMiddleware, async ({ body, rating }, res) => {
     }
     await Itinerary.findOneAndUpdate(
       { _id: body._id },
-      { $addToSet: { ratings: rating } }
+      { $addToSet: { ratings: body.rating } }
     )
     res.json({ message: "Input submitted" })
   } catch (err) {

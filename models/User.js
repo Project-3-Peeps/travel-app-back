@@ -56,9 +56,9 @@ UserSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
-UserSchema.virtual('ItineraryCount').get(function () {
-  return this.savedItinerary.length;
-});
+// UserSchema.virtual('ItineraryCount').get(function () {
+//   return this.savedItinerary.length;
+// });
 // when we query a user, we'll also get another field called `itineraryCount` with the number of saved books we have
 // TODO: this function is causing the code to break.
 // UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'length' of undefined
