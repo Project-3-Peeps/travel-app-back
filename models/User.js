@@ -42,63 +42,32 @@ const UserSchema = new Schema(
   }
 );
 
-UserSchema.pre('save', function(next) {
-  var user = this;
-  console.log(user)
+// hash user password
+UserSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+    console.log(this.password)
+  }
 
-  // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) return next();
-
-  // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-      if (err) return next(err);
-
-      // hash the password using our new salt
-      bcrypt.hash(user.password, salt, function(err, hash) {
-          if (err) return next(err);
-          // override the cleartext password with the hashed one
-          user.password = hash;
-          console.log(user.password)
-          next();
-      });
-  });
+  next();
 });
-   
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
-  });
+
+// custom method to compare and validate password for logging in
+UserSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
 };
-   
-module.exports = mongoose.model('User', UserSchema);
 
-// // hash user password
-// UserSchema.pre('save', async function (next) {
-//   if (this.isNew || this.isModified('password')) {
-//     const saltRounds = 10;
-//     this.password = await bcrypt.hash(this.password, saltRounds);
-//     console.log(this.password)
-//   }
-
-//   next();
+// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
+// UserSchema.virtual('ItineraryCount').get(function () {
+//   return this.savedItinerary.length;
 // });
-
-// // custom method to compare and validate password for logging in
-// UserSchema.methods.isCorrectPassword = async function (password) {
-//   return bcrypt.compare(password, this.password);
-// };
-
-// // when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
-// // UserSchema.virtual('ItineraryCount').get(function () {
-// //   return this.savedItinerary.length;
-// // });
-// // when we query a user, we'll also get another field called `itineraryCount` with the number of saved books we have
-// // TODO: this function is causing the code to break.
-// // UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'length' of undefined
-// // UserSchema.virtual('ItineraryCount').get(function () {
-// //   return this.savedItinerary.length;
-// // });
+// when we query a user, we'll also get another field called `itineraryCount` with the number of saved books we have
+// TODO: this function is causing the code to break.
+// UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'length' of undefined
+// UserSchema.virtual('ItineraryCount').get(function () {
+//   return this.savedItinerary.length;
+// });
 
 const User = model('User', UserSchema);
 
