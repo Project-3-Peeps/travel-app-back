@@ -22,14 +22,26 @@ router.get('/', (req, res) => {
   }
 })
 
-router.get('/itinerary', (req, res) => {
+router.get('/itinerary', async (req, res) => {
   try {
-    Itinerary.findAll({})
+    await Itinerary.findAll({})
       .then(itineraries => {
         res.json(itineraries)
       })
   } catch (err) {
     res.status(400).json(err)
+  }
+})
+
+router.get('/searchCity', ({ body }, res) => {
+  try {
+    Itinerary.find({days:{ $elemMatch:{ city : body.city}}}).collation({locale: 'en', strength: 2})
+    .then(matchItinerary => {
+      res.json(matchItinerary)
+    })
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json(err)
   }
 })
 
