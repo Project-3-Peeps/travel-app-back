@@ -1,14 +1,7 @@
-require('dotenv').config();
 const router = require('express').Router();
 const { User, Itinerary } = require('../../models')
-const {
-  createUser,
-  getSingleUser,
-  saveItinerary,
-  deleteItinerary,
-  login,
-} = require('../../controllers/user-controller');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 // import middleware
 const { authMiddleware, signToken } = require('../../utils/auth');
@@ -18,11 +11,26 @@ router.get('/testConnection', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-  User.findAll({})
-    .then(dbUser => {
-      res.json(dbUser)
-    })
-    .catch(err)
+  try {
+
+    User.findAll({})
+      .then(dbUser => {
+        res.json(dbUser)
+      })
+  } catch (err) {
+    res.status(400).json(err)
+  }
+})
+
+router.get('/itinerary', (req, res) => {
+  try {
+    Itinerary.findAll({})
+      .then(itineraries => {
+        res.json(itineraries)
+      })
+  } catch (err) {
+    res.status(400).json(err)
+  }
 })
 
 // put authMiddleware anywhere we need to send a token for verification of user
@@ -97,30 +105,31 @@ router.get('/savedItinerary', authMiddleware, async ({ user }, res) => {
 router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => {
   // router put purchase logic
   try {
-
     const userClient = await User.findOne({ _id: user._id })
-    const purchasingItinerary = await Itinerary.findOne({ _id: body._id })
+    const purchasedItinerary = await Itinerary.findOne({ _id: body._id })
 
     if (!userClient) {
       return res.status(400).json({ message: "User not found" })
     }
-    if (!purchasingItinerary) {
+    if (!purchasedItinerary) {
       return res.status(400).json({ message: "Itinerary not found" })
     }
 
-    let finalPoints = userClient.points - purchasingItinerary.price
+    let finalPoints = userClient.points - purchasedItinerary.price
     if (finalPoints >= 0) {
       // substract point from user
       // add itinerary to user saved_itinerary
       await User.findOneAndUpdate(
         { _id: user._id },
-        { $set: { points: finalPoints }, $addToSet: { saved_itinerary: purchasingItinerary } }
+        { $set: { points: finalPoints }, $addToSet: { saved_itinerary: purchasedItinerary } }
       );
       // add user _id to itinerary purchaser_ids
       await Itinerary.findOneAndUpdate(
         { _id: body._id },
         { $addToSet: { purchaser_ids: user._id } }
       )
+    } else {
+      return res.json({ message: "not enough points" })
     }
     res.json({ message: "successful transaction" })
   } catch (err) {
@@ -130,7 +139,7 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
 
 })
 
-router.put('/rateItinerary', authMiddleware, async ({ body, rating }, res) => {
+router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
   try {
     const ratingItinerary = await Itinerary.findOne({ _id: body._id })
     if (!ratingItinerary) {
@@ -138,7 +147,7 @@ router.put('/rateItinerary', authMiddleware, async ({ body, rating }, res) => {
     }
     await Itinerary.findOneAndUpdate(
       { _id: body._id },
-      { $addToSet: { ratings: rating } }
+      { $addToSet: { ratings: body.rating } }
     )
     res.json({ message: "Input submitted" })
   } catch (err) {
@@ -149,11 +158,17 @@ router.put('/rateItinerary', authMiddleware, async ({ body, rating }, res) => {
 
 // router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
 //   try {
-//     const user = await User.findOne({ _id: user._id })
+//     const userUpdated = await User.findOneAndUpdate(
+//       { _id: user._id },
+//       {$add: { points:  5  }})
+//     if(!userUpdated){
+//       return res.status(400).json({ message: "Something went wrong" })
+//     }
+//     res.json({message: "successfuly added points"})
+//   } catch(err){
+//     return res.status(400).json(err);
 //   }
 // })
-
-
 
 // router.route('/signup').post(createUser)
 //.put(authMiddleware, saveItinerary);
