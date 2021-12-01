@@ -93,6 +93,16 @@ router.get('/savedItinerary', authMiddleware, async ({ user }, res) => {
   }
 })
 
+router.get('/location', authMiddleware, async (req, res) => {
+  try {
+    const searchedLocation = await Itinerary.findAll({city: req.params})
+    res.json(searchedLocation)
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json(err)
+  }
+})
+
 // route used to buy an itinerary. Itinerary '_id' must come in the body.
 router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => {
   // router put purchase logic
@@ -146,6 +156,8 @@ router.put('/rateItinerary', authMiddleware, async ({ body, rating }, res) => {
     return res.status(400).json(err)
   }
 })
+
+
 
 // router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
 //   try {
