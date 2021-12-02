@@ -74,14 +74,16 @@ router.post('/login', async ({ body }, res) => {
 // save an itinerary to a user's 'saved_itinerary' field by adding it to the set (to prevent itinerary)
 // user comes from 'req.user' created in the auth middleware function
 router.post('/createItinerary', authMiddleware, async ({ user, body }, res) => {
-  console.log(user)
   try {
+    console.log(body)
+    const newItinerary = await Itinerary.create(body)
+    console.log(newItinerary)
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $addToSet: { saved_itinerary: body } },
+      { $addToSet: { saved_itinerary: newItinerary } },
       { new: true, runValidators: true }
     );
-    return res.json(updatedUser);
+    return res.json({ newItinerary, updatedUser });
   } catch (err) {
     console.log(err)
     return res.status(400).json(err);
@@ -158,10 +160,10 @@ router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
 
 router.get('/searchCity', ({ body }, res) => {
   try {
-    Itinerary.find({days:{ $elemMatch:{ city : body.city}}})
-    .then(matchItinerary => {
-      res.json(matchItinerary)
-    })
+    Itinerary.find({ days: { $elemMatch: { city: body.city } } })
+      .then(matchItinerary => {
+        res.json(matchItinerary)
+      })
   } catch (err) {
     console.log(err)
     return res.status(400).json(err)
