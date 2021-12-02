@@ -5,6 +5,7 @@ require('dotenv').config();
 
 // import middleware
 const { authMiddleware, signToken } = require('../../utils/auth');
+const auth = require('../../utils/auth');
 
 router.get('/testConnection', (req, res) => {
   res.json({ message: "success" })
@@ -33,16 +34,15 @@ router.get('/itinerary', async (req, res) => {
   }
 })
 
-router.get('/searchCity', ({ body }, res) => {
-  try {
-    Itinerary.find({days:{ $elemMatch:{ city : body.city}}}).collation({locale: 'en', strength: 2})
+router.post('/searchCity', ({ body }, res) => {
+    Itinerary.find({days:{ $elemMatch:{city : body.city}}}).collation({locale: 'en', strength: 2})
     .then(matchItinerary => {
+      console.log(matchItinerary)
       res.json(matchItinerary)
-    })
-  } catch (err) {
+    }).catch(err => {
     console.log(err)
-    return res.status(400).json(err)
-  }
+    res.status(400).json(err)
+  })
 })
 
 // put authMiddleware anywhere we need to send a token for verification of user
@@ -65,7 +65,6 @@ router.post('/signup', ({ body }, res) => {
 
 router.post('/login', async ({ body }, res) => {
   try {
-
     const user = await User.findOne({ $or: [{ username: body.username }, { email: body.email }] })
     if (!user) {
       return res.status(400).json({ message: "Can't find this user" });
@@ -76,6 +75,7 @@ router.post('/login', async ({ body }, res) => {
       return res.status(400).json({ message: 'Wrong password!' });
     }
     const token = signToken(user);
+    // res.redirect('/api/ProfilePage')
     res.json({ token });
   } catch (err) {
     console.log(err)
