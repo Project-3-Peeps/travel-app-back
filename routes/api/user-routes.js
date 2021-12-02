@@ -168,6 +168,18 @@ router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
   }
 })
 
+router.get('/searchCity', ({ body }, res) => {
+  try {
+    Itinerary.find({days:{ $elemMatch:{ city : body.city}}})
+    .then(matchItinerary => {
+      res.json(matchItinerary)
+    })
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json(err)
+  }
+})
+
 // router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
 //   try {
 //     const userUpdated = await User.findOneAndUpdate(
