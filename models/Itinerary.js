@@ -13,6 +13,10 @@ const ItinerarySchema = new Schema({
         type: Number,
         required: true,
     },
+    image: {
+        type: String,
+        required: true
+    },
     days: [
         {
             day_number: Number,
