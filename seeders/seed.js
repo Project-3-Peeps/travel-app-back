@@ -29,6 +29,7 @@ const userSeed = [
                 city: 'pig beach'
               },
             ],
+            image: 'https://allthatsinteresting.com/wordpress/wp-content/uploads/2016/11/feeding-the-pig.jpg',
             ratings: []
           },
           {
@@ -56,6 +57,7 @@ const userSeed = [
                 city: 'Munich, GER'
               },
             ],
+            image: 'https://cdn.theatlantic.com/thumbor/hWK65e6IG44dg7BUiFOLjZ2nkzY=/0x23:1247x792/640x400/media/img/photo/2014/09/opening-weekend-of-oktoberfest-2014/o01_14560857-1/original.jpg',
             ratings: []
           }
         ],
@@ -82,6 +84,7 @@ const userSeed = [
                 city: 'Fort Worth, TX'
               },
             ],
+            image: "https://nationalwestern.com/wp-content/uploads/2020/01/barrel-web.jpg",
             ratings: []
           },
           {
@@ -109,6 +112,7 @@ const userSeed = [
                 city: 'Antrim, IRE'
               },
             ],
+            image: "https://i2.wp.com/wandereroftheworld.co.uk/wp-content/uploads/2017/06/Why-is-The-Temple-Bar-in-Dublin-famous.jpg?fit=650%2C400&ssl=1",
             ratings: []
           }
         ],
@@ -134,6 +138,7 @@ const userSeed = [
                 city: 'Seattle, WA'
               },
             ],
+            image: "https://img.dtcn.com/image/themanual/seattle-washington-travel-city-guide.jpg",
             ratings: []
           },
           {
@@ -161,6 +166,7 @@ const userSeed = [
                 city: 'Hong Kong, HK'
               },
             ],
+            image: "https://www.business.hsbc.com/-/media/cmb/international-business-guide/hk/images/doing-business-hongkong.jpg?h=961&w=1440&la=en-GB&hash=58C2D49B6CB7D83991A7B683E4D802CC",
             ratings: []
           }
         ],
@@ -186,6 +192,7 @@ const userSeed = [
                 city: 'New York City, NY'
               },
             ],
+            image: "https://garmentdistrict.nyc/sites/default/files/styles/max_2600x2600/public/2021-02/NeighborhoodAbout.jpg?itok=Ke6ZwmxO",
             ratings: []
           },
           {
@@ -213,6 +220,7 @@ const userSeed = [
                 city: 'Sapporo, JPN'
               },
             ],
+            image: "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/499000/499996-sapporo-and-vicinity.jpg",
             ratings: []
           }
         ],
@@ -237,6 +245,7 @@ const itinerarySeed = [
         city: 'pig beach'
       },
     ],
+    image: 'https://allthatsinteresting.com/wordpress/wp-content/uploads/2016/11/feeding-the-pig.jpg',
     ratings: []
   },
   {
@@ -255,6 +264,7 @@ const itinerarySeed = [
         city: 'Seattle, WA'
       },
     ],
+    image: "https://img.dtcn.com/image/themanual/seattle-washington-travel-city-guide.jpg",
     ratings: []
   },
   {
@@ -273,6 +283,7 @@ const itinerarySeed = [
         city: 'Fort Worth, TX'
       },
     ],
+    image: "https://nationalwestern.com/wp-content/uploads/2020/01/barrel-web.jpg",
     ratings: []
   },
   {
@@ -291,6 +302,7 @@ const itinerarySeed = [
         city: 'New York City, NY'
       },
     ],
+    image: "https://garmentdistrict.nyc/sites/default/files/styles/max_2600x2600/public/2021-02/NeighborhoodAbout.jpg?itok=Ke6ZwmxO",
     ratings: []
   },
   {
@@ -318,6 +330,7 @@ const itinerarySeed = [
         city: 'Munich, GER'
       },
     ],
+    image: "https://cdn.theatlantic.com/thumbor/hWK65e6IG44dg7BUiFOLjZ2nkzY=/0x23:1247x792/640x400/media/img/photo/2014/09/opening-weekend-of-oktoberfest-2014/o01_14560857-1/original.jpg",
     ratings: []
   },
   {
@@ -345,6 +358,7 @@ const itinerarySeed = [
         city: 'Hong Kong, HK'
       },
     ],
+    image: "https://www.business.hsbc.com/-/media/cmb/international-business-guide/hk/images/doing-business-hongkong.jpg?h=961&w=1440&la=en-GB&hash=58C2D49B6CB7D83991A7B683E4D802CC",
     ratings: []
   },
   {
@@ -372,6 +386,7 @@ const itinerarySeed = [
         city: 'Antrim, IRE'
       },
     ],
+    image: "https://i2.wp.com/wandereroftheworld.co.uk/wp-content/uploads/2017/06/Why-is-The-Temple-Bar-in-Dublin-famous.jpg?fit=650%2C400&ssl=1",
     ratings: []
   },
   {
@@ -399,6 +414,7 @@ const itinerarySeed = [
         city: 'Sapporo, JPN'
       },
     ],
+    image: "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/499000/499996-sapporo-and-vicinity.jpg",
     ratings: []
   },
 ];
