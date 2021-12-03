@@ -25,10 +25,11 @@ router.get('/', (req, res) => {
 
 router.get('/itinerary', async (req, res) => {
   try {
-    await Itinerary.findAll({})
-      .then(itineraries => {
-        res.json(itineraries)
-      })
+    console.log("fine")
+    const itineraries = await Itinerary.find({})
+    // last 8 itinerary
+    console.log(itineraries)
+    res.json(itineraries)
   } catch (err) {
     res.status(400).json(err)
   }
