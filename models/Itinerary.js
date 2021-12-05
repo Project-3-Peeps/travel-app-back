@@ -5,6 +5,10 @@ const ItinerarySchema = new Schema({
         type: String,
         required: true,
     },
+    title: {
+        type: String,
+        required: true,
+    },
     description: {
         type: String,
         required: true,
@@ -30,6 +34,7 @@ const ItinerarySchema = new Schema({
     ],
 
     purchaser_ids:[],
+    ratings: []
 });
 
 const Itinerary = model('Itinerary', ItinerarySchema);

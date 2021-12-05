@@ -119,6 +119,7 @@ router.get('/savedItinerary', authMiddleware, async ({ user }, res) => {
 // route used to buy an itinerary. Itinerary '_id' must come in the body.
 router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => {
   // router put purchase logic
+  console.log(body)
   try {
     const userClient = await User.findOne({ _id: user._id })
     const purchasedItinerary = await Itinerary.findOne({ _id: body._id })
@@ -136,7 +137,7 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
       // add itinerary to user saved_itinerary
       await User.findOneAndUpdate(
         { _id: user._id },
-        { $set: { points: finalPoints }, $addToSet: { saved_itinerary: purchasedItinerary } }
+        { $set: { points: finalPoints }, $addToSet: { purchased_itinerary: purchasedItinerary } }
       );
       // add user _id to itinerary purchaser_ids
       await Itinerary.findOneAndUpdate(
