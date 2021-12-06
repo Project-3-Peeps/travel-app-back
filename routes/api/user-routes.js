@@ -116,13 +116,30 @@ router.get('/savedItinerary', authMiddleware, async ({ user }, res) => {
   }
 })
 
+router.post('/purchased', authMiddleware, async ({ user }, res) => {
+  console.log("oog")
+  try {
+    console.log("here")
+    const itineraries = await User.findOne({ _id: user._id })
+    const { purchased_itinerary, saved_itinerary } = itineraries
+    // const token = jwt.sign({ saved_itinerary }, process.env.TOKEN_SECRET, { expiresIn: '2h' })
+    console.log(itineraries)
+    res.json({ purchased_itinerary, saved_itinerary })
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json(err);
+  }
+})
+
 // route used to buy an itinerary. Itinerary '_id' must come in the body.
 router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => {
   // router put purchase logic
-  console.log(body)
+  console.log("here")
   try {
     const userClient = await User.findOne({ _id: user._id })
-    const purchasedItinerary = await Itinerary.findOne({ _id: body._id })
+    const purchasedItinerary = await Itinerary.findOne({ _id: body._id})
+    console.log("client and itin", userClient, purchasedItinerary)
+    
 
     if (!userClient) {
       return res.status(400).json({ message: "User not found" })
@@ -172,17 +189,17 @@ router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
   }
 })
 
-router.get('/searchCity', ({ body }, res) => {
-  try {
-    Itinerary.find({ days: { $elemMatch: { city: body.city } } })
-      .then(matchItinerary => {
-        res.json(matchItinerary)
-      })
-  } catch (err) {
-    console.log(err)
-    return res.status(400).json(err)
-  }
-})
+// router.get('/searchCity', ({ body }, res) => {
+//   try {
+//     Itinerary.find({ days: { $elemMatch: { city: body.city } } })
+//       .then(matchItinerary => {
+//         res.json(matchItinerary)
+//       })
+//   } catch (err) {
+//     console.log(err)
+//     return res.status(400).json(err)
+//   }
+// })
 
 // router.put('/addPoints', authMiddleware, ({ user, body }, res) => {
 //   try {
