@@ -116,6 +116,17 @@ router.get('/savedItinerary', authMiddleware, async ({ user }, res) => {
   }
 })
 
+router.post("/points", authMiddleware, async ({ user }, res) => {
+  console.log("oogway")
+  try {
+    const currentPoints = await User.findOne({ _id: user._id})
+    const{ points } = currentPoints 
+    res.json({points})
+  } catch (err) {
+    return res.status(400).json(err)
+  }
+})
+
 router.post('/purchased', authMiddleware, async ({ user }, res) => {
   console.log("oog")
   try {
@@ -170,6 +181,25 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
     return res.status(400).json(err);
   }
 
+})
+
+router.put('/addpoints', authMiddleware, async ({user}, res) => {
+  try {
+    const currentUser = await User.findOne({ _id: user._id })
+    console.log("client", currentUser)
+    if (!currentUser) {
+      return res.status(400).json({ message: "User not found" })
+    }
+    let newPoints = currentUser.points +=10
+    await User.findOneAndUpdate(
+      {_id: user._id},    
+      { $set: { points: newPoints }}
+    )
+    res.json({message: "points added"})
+  } catch (err) {
+    console.log(err)
+    return res.status(400).json(err)
+  }
 })
 
 router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
