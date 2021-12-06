@@ -215,16 +215,20 @@ router.put('/addpoints', authMiddleware, async ({ user }, res) => {
 })
 
 router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
+  const { rating, _id } = body
+  console.log(rating, _id)
   try {
     const ratingItinerary = await Itinerary.findOne({ _id: body._id })
     if (!ratingItinerary) {
       return res.status(400).json({ message: "Itinerary not found" })
     }
-    await Itinerary.findOneAndUpdate(
-      { _id: body._id },
-      { $addToSet: { ratings: body.rating } }
+    console.log(ratingItinerary)
+    const nametest = await Itinerary.findOneAndUpdate(
+     body._id,
+      { $push: { ratings: rating } }
     )
-    res.json({ message: "Input submitted" })
+    console.log(nametest)
+    res.json( nametest)
   } catch (err) {
     console.log(err)
     return res.status(400).json(err)
