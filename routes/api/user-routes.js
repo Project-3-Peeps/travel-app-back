@@ -217,6 +217,18 @@ router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
     console.log(err)
     return res.status(400).json(err)
   }
+});
+
+router.post('/itinerary/:id', async (req,res) => {
+  try {
+    const itinerary = await Itinerary.findOne({ _id: req.params.id })
+    if(!itinerary){
+      return res.status(400).json("No matching itinerary")
+    }
+    res.json(itinerary)
+  } catch (err){
+    res.json(err)
+  }
 })
 
 // router.get('/searchCity', ({ body }, res) => {
