@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const db = require('../models');
 
-mongoose.connect('mongodb://localhost/triptinerary-db', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/triptinerary-db', {
   useNewUrlParser: true,
 //   useFindAndModify: true,
   useUnifiedTopology: true,
