@@ -34,7 +34,18 @@ const ItinerarySchema = new Schema({
     ],
 
     purchaser_ids:[],
-    ratings: []
+    ratings: [
+        {
+            // itinerary: {
+            //     type: String,
+            //     required: true,
+            // },
+            rating: {
+                type: Number,
+                required: true,
+            } 
+        }
+    ]
 });
 
 const Itinerary = model('Itinerary', ItinerarySchema);

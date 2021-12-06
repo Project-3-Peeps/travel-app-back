@@ -231,6 +231,8 @@ router.put('/rateItinerary', authMiddleware, async ({ body }, res) => {
   }
 })
 
+
+
 // router.get('/searchCity', ({ body }, res) => {
 //   try {
 //     Itinerary.find({ days: { $elemMatch: { city: body.city } } })
