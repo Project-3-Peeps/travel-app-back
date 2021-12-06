@@ -23,6 +23,17 @@ router.get('/', (req, res) => {
   }
 })
 
+router.post('/me', authMiddleware, ({user}, res) => {
+  console.log("help")
+  User.find({ _id: user._id })
+    .then(myData => {
+      console.log("BIKES")
+      res.json(myData)
+    }).catch(err=> {
+      console.log(err)
+    })
+})
+
 router.get('/itinerary', async (req, res) => {
   try {
     console.log("fine")
@@ -36,14 +47,14 @@ router.get('/itinerary', async (req, res) => {
 })
 
 router.post('/searchCity', ({ body }, res) => {
-    Itinerary.find({days:{ $elemMatch:{city : body.city}}}).collation({locale: 'en', strength: 2})
+  Itinerary.find({ days: { $elemMatch: { city: body.city } } }).collation({ locale: 'en', strength: 2 })
     .then(matchItinerary => {
       console.log(matchItinerary)
       res.json(matchItinerary)
     }).catch(err => {
-    console.log(err)
-    res.status(400).json(err)
-  })
+      console.log(err)
+      res.status(400).json(err)
+    })
 })
 
 // put authMiddleware anywhere we need to send a token for verification of user
@@ -119,9 +130,9 @@ router.get('/savedItinerary', authMiddleware, async ({ user }, res) => {
 router.post("/points", authMiddleware, async ({ user }, res) => {
   console.log("oogway")
   try {
-    const currentPoints = await User.findOne({ _id: user._id})
-    const{ points } = currentPoints 
-    res.json({points})
+    const currentPoints = await User.findOne({ _id: user._id })
+    const { points } = currentPoints
+    res.json({ points })
   } catch (err) {
     return res.status(400).json(err)
   }
@@ -148,9 +159,9 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
   console.log("here")
   try {
     const userClient = await User.findOne({ _id: user._id })
-    const purchasedItinerary = await Itinerary.findOne({ _id: body._id})
+    const purchasedItinerary = await Itinerary.findOne({ _id: body._id })
     console.log("client and itin", userClient, purchasedItinerary)
-    
+
 
     if (!userClient) {
       return res.status(400).json({ message: "User not found" })
@@ -183,19 +194,20 @@ router.put('/purchaseItinerary', authMiddleware, async ({ user, body }, res) => 
 
 })
 
-router.put('/addpoints', authMiddleware, async ({user}, res) => {
+router.put('/addpoints', authMiddleware, async ({ user }, res) => {
+  console.log("HELP")
   try {
     const currentUser = await User.findOne({ _id: user._id })
     console.log("client", currentUser)
     if (!currentUser) {
       return res.status(400).json({ message: "User not found" })
     }
-    let newPoints = currentUser.points +=10
+    let newPoints = currentUser.points += 10
     await User.findOneAndUpdate(
-      {_id: user._id},    
-      { $set: { points: newPoints }}
+      { _id: user._id },
+      { $set: { points: newPoints } }
     )
-    res.json({message: "points added"})
+    res.json({ message: "points added" })
   } catch (err) {
     console.log(err)
     return res.status(400).json(err)
