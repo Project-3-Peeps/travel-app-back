@@ -198,7 +198,7 @@ const userSeed = [
           {
             creator: "Chloe Harris",
             title: "Two Days in Japan",
-            description: "Blinding lights and city nights in Japan",
+            description: "Blinding lights and city nights in Japan. You are going to love following in my footsteps during my two day trip to Tokyo!",
             price: 100,
             days: [
               {
@@ -232,7 +232,7 @@ const itinerarySeed = [
   {
     creator: "Kyle Bove",
     title: "Pig Beach Day",
-    description: "A trip to pig beach",
+    description: "A trip to pig beach will have you swimming with the piggies!",
     price: 30,
     days: [
       {
@@ -251,7 +251,7 @@ const itinerarySeed = [
   {
     creator: "JuanJo Ramirez",
     title: "Seafood in Seatown",
-    description: "A quest to find the best seafood in Seattle",
+    description: "A quest to find the best seafood in Seattle. A walk through Pike Place Market's best food stands, plus park day adventures!",
     price: 20,
     days: [
       {
@@ -270,7 +270,7 @@ const itinerarySeed = [
   {
     creator: "Sami Byers",
     title: "The Lone Star Experience",
-    description: "Going to a good old fashion texas rodeo",
+    description: "Going to a good old fashion texas rodeo. Nothing beats beers, brisket, and bulls in the place where some like it hot!",
     price: 40,
     days: [
       {
@@ -289,7 +289,7 @@ const itinerarySeed = [
   {
     creator: "Chloe Harris",
     title: "New York in Style",
-    description: "Travel New York in fashion",
+    description: "Travel New York in fashion. I'll show you to the most fabulous places to shop and eat.",
     price: 50,
     days: [
       {
@@ -308,7 +308,7 @@ const itinerarySeed = [
   {
     creator: "Kyle Bove",
     title: "Fall in Scandinavia",
-    description: "Experience Denmark and Germany the way you're supposed to",
+    description: "Experience Denmark and Germany the way you're supposed to. Check out the 'totally legal' farmers market. Party like a filthy animal at Octoberfest!",
     price: 70,
     days: [
       {
@@ -336,7 +336,7 @@ const itinerarySeed = [
   {
     creator: "JuanJo Ramirez",
     title: "East Asian Excursion",
-    description: "East Asia in two days",
+    description: "East Asia in two days. This one is for the city lovers!",
     price: 80,
     days: [
       {
@@ -364,7 +364,7 @@ const itinerarySeed = [
   {
     creator: "Sami Byers",
     title: "Ireland IRL",
-    description: "Pub crawl through Ireland",
+    description: "Pub crawl through Ireland. From the pubs to the moores, this itinerary guide will take you to the most delicious beers and the most beautiful views this country has to offer.",
     price: 90,
     days: [
       {
@@ -392,7 +392,7 @@ const itinerarySeed = [
   {
     creator: "Chloe Harris",
     title: "Two Days in Japan",
-    description: "Blinding lights and city nights in Japan",
+    description: "Blinding lights and city nights in Japan. Purchase my itinerary to spend two days in Japan traveling in style the way I did! If you like fine dining and fun activities this is your itinerary!",
     price: 100,
     days: [
       {
@@ -415,6 +415,146 @@ const itinerarySeed = [
       },
     ],
     image: "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/499000/499996-sapporo-and-vicinity.jpg",
+    ratings: []
+  },
+  {
+    creator: "JuanJo Ramirez",
+    title: "Experience Paris",
+    description: "If you've never been to Paris, this it the guide you will need. There's much more to this sprawling and historic metropolis than the Eiffel tower. I'll show you the best hidden gems I discovered on my 3 day trip in Paris.",
+    price: 100,
+    days: [
+      {
+        day_number: 1,
+        activities: [{
+            where: "Paris",
+            what: "The Moulin Rouge",
+            cost: 100
+        }],
+        city: 'Paris, France'
+      },
+      {
+        day_number: 2,
+        activities: [{
+            where: "...",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Paris, France'
+      },
+    ],
+    image: "https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    ratings: []
+  },
+  {
+    creator: "Kyle Bove",
+    title: "Adventure in Peru!",
+    description: "My itinerary is crafted for the adventurous traveler. I spent a week traveling in one of the most beautiful countries in the world. You'll find everything you need in my itinerary for the trip of a lifetime!",
+    price: 100,
+    days: [
+      {
+        day_number: 1,
+        activities: [{
+            where: "Lima",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Lima, Peru'
+      },
+      {
+        day_number: 2,
+        activities: [{
+            where: "...",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Machu Pichu, Peru'
+      },
+    ],
+    image: "https://images.pexels.com/photos/7342975/pexels-photo-7342975.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    ratings: []
+  },
+  {
+    creator: "Chloe Harris",
+    title: "Explore the Emerald City",
+    description: "This itinerary includes some of the coolest spots in the beautiful city of Seattle, Washington. I spent 3 days experiencing the mix of nature and urban jungle this city has to offer!",
+    price: 100,
+    days: [
+      {
+        day_number: 1,
+        activities: [{
+            where: "Pike Place",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Seattle, WA'
+      },
+      {
+        day_number: 2,
+        activities: [{
+            where: "...",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Seattle, WA'
+      },
+    ],
+    image: "https://images.pexels.com/photos/3598103/pexels-photo-3598103.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    ratings: []
+  },
+  {
+    creator: "Sami Byers",
+    title: "See Thailand",
+    description: "I spent 2 days in Thailand with a local as my guide. If you'd like to experience this majestic country as a local would, buy my itinerary!",
+    price: 100,
+    days: [
+      {
+        day_number: 1,
+        activities: [{
+            where: "Pike Place",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Thailand'
+      },
+      {
+        day_number: 2,
+        activities: [{
+            where: "...",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Thailand'
+      },
+    ],
+    image: "https://images.pexels.com/photos/1682748/pexels-photo-1682748.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    ratings: []
+  },
+  {
+    creator: "JuanJo Ramirez",
+    title: "Get lost in Venice",
+    description: "Most people might think getting lost in a foreign country would be a distaster, but think again! While I spent a lot of time getting lost in the floating city of Venice, I will guide you to some awesome city spots.",
+    price: 100,
+    days: [
+      {
+        day_number: 1,
+        activities: [{
+            where: "...",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Venice ITL'
+      },
+      {
+        day_number: 2,
+        activities: [{
+            where: "...",
+            what: "...",
+            cost: 100
+        }],
+        city: 'Venice, ITL'
+      },
+    ],
+    image: "https://images.pexels.com/photos/2954558/pexels-photo-2954558.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     ratings: []
   },
 ];
